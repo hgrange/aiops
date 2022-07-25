@@ -5,12 +5,6 @@
       debug: 
         var: k8s_apiurl
 
-
-    - name: DEBUG -                 🟢 API KEY
-      debug: 
-        var: k8s_apikey
-
-
     - name: Mitigate MYSQL Problem
       shell: |
         /tmp/oc login {{ k8s_apiurl }} -u admin2 -p {{ k8s_apikey }}  --insecure-skip-tls-verify
