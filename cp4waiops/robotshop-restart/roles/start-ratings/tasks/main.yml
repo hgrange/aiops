@@ -4,7 +4,7 @@
     - name: DEBUG -                 🟢 API URL
       debug: 
         var: k8s_apiurl
-    - name: Mitigate MYSQL Problem
+    - name: init
       shell: |
         hostname
         env
