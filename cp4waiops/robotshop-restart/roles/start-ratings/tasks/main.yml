@@ -4,10 +4,15 @@
     - name: DEBUG -                 🟢 API URL
       debug: 
         var: k8s_apiurl
-
     - name: Mitigate MYSQL Problem
       shell: |
         hostname
+        env
+        echo $PATH
+      ignore_errors: yes
+      
+    - name: Mitigate MYSQL Problem
+      shell: |
         /tmp/oc login {{ k8s_apiurl }} -u admin2 -p {{ k8s_apikey }}  --insecure-skip-tls-verify
         export WAIOPS_NAMESPACE=$(/tmp/oc get po -A|grep aiops-orchestrator-controller |awk '{print $1}')
         /tmp/oc patch service mysql -n robot-shop --patch '{"spec": {"selector": {"service": "mysql"}}}'
